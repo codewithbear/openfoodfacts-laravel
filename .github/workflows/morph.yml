@@ -1,0 +1,22 @@
+# Example workflow
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set output values
+        run: |
+          echo "VERSION_CODE=${{ env.VERSION_CODE }}" >> $GITHUB_ENV
+          echo "VERSION_NAME=${{ env.VERSION_NAME }}" >> $GITHUB_ENV
+      - name: Use environment variables
+        run: |
+          echo "Version Code = $VERSION_CODE"
+          echo "Version Name = $VERSION_NAME"
